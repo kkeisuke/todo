@@ -13,7 +13,7 @@ module.exports = {
   rules: {
     eqeqeq: 'error',
     'dot-notation': 'error',
-    camelcase: 'error',
+    camelcase: ['error', { properties: 'never' }],
     '@typescript-eslint/ban-types': 'error',
     'vue/no-side-effects-in-computed-properties': 'error',
     'vue/html-self-closing': ['error', { html: { void: 'always' } }],
