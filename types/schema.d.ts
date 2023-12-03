@@ -52,6 +52,6 @@ export interface Database {
   }
 }
 
-export type TodoAdd = Omit<Database['public']['Tables']['todos']['Insert'], 'id', 'user_id'>
-export type TodoUpdate = Omit<Database['public']['Tables']['todos']['Update'], 'id', 'user_id'>
+export type TodoAdd = Omit<Database['public']['Tables']['todos']['Insert'], 'id' | 'user_id'>
+export type TodoUpdate = Omit<Database['public']['Tables']['todos']['Update'], 'id' | 'user_id'>
 export type Todo = Omit<Database['public']['Tables']['todos']['Row'], 'user_id'>
