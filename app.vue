@@ -29,7 +29,8 @@ textarea {
     outline-color: var(--accent-color);
   }
 }
-button {
+button,
+input[type='submit'] {
   cursor: pointer;
 }
 </style>
