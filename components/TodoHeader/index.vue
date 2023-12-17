@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineOptions({
+  name: 'TodoHeader'
+})
+
 const user = useSupabaseUser()
 const { logout } = useAuth()
 

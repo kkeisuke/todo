@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineOptions({
+  name: 'TodoLogin'
+})
+
 const { email, loading, login } = useAuth()
 
 const handleLogin = async () => {
