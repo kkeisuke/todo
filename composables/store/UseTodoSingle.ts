@@ -17,6 +17,10 @@ export const useTodoSingle = (todoId: string) => {
     async completeTodo(id: Todo['id']) {
       await completeTodo(id)
       await refresh()
+    },
+    async cancelCompleteTodo(id: Todo['id']) {
+      await updateTodo(id, { completed_at: null })
+      await refresh()
     }
   }
 }
