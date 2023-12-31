@@ -15,14 +15,14 @@ const handleAddFormSubmit = () => {
     <fieldset>
       <legend>Todo 追加</legend>
       <div class="fields">
-        <label for="title">タイトル</label>
-        <input id="title" v-model="data.title" type="text" />
-        <label for="deadline">日時</label>
+        <label for="add-title">タイトル</label>
+        <input id="add-title" v-model="data.title" type="text" />
+        <label for="add-deadline">日時</label>
         <div>
-          <ui-date-picker id="deadline" v-model="data.deadline" type="datetime-local" />
+          <ui-date-picker id="add-deadline" v-model="data.deadline" type="datetime-local" />
         </div>
-        <label for="memo">メモ</label>
-        <textarea id="memo" v-model="data.memo" rows="5" />
+        <label for="add-memo">メモ</label>
+        <textarea id="add-memo" v-model="data.memo" rows="5" />
         <button class="add-btn">追加</button>
       </div>
     </fieldset>
