@@ -4,5 +4,10 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/supabase'],
   imports: {
     dirs: ['composables/**', 'utils/**']
+  },
+  nitro: {
+    prerender: {
+      autoSubfolderIndex: false
+    }
   }
 })
