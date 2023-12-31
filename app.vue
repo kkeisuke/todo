@@ -17,7 +17,7 @@ dd {
   margin: 0;
 }
 input {
-  padding-inline: 4px;
+  padding: 2px 4px;
   accent-color: var(--accent-color);
   &:focus-visible {
     outline-color: var(--accent-color);

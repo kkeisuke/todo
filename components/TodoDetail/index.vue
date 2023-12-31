@@ -49,13 +49,13 @@ const handleCancelCompleteTodo = async (id: Todo['id']) => {
 .detail {
   display: grid;
   grid-template-columns: auto 1fr;
-  column-gap: 24px;
-  row-gap: 16px;
+  column-gap: 2rem;
+  row-gap: 1rem;
 }
 .complete {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
 }
 .memo {
   white-space: pre-wrap;

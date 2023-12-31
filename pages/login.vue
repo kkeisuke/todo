@@ -14,8 +14,7 @@ user.value && navigateTo('/')
 
 <style scoped>
 .main {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 2rem;
 }
 </style>

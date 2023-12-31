@@ -27,7 +27,7 @@ const handleLogout = async () => {
 <style scoped>
 .header {
   display: grid;
-  gap: 16px;
+  gap: 1rem;
 }
 .logo {
   margin: 0;

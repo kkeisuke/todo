@@ -33,7 +33,7 @@ const handleAddFormSubmit = () => {
 .fields {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 8px;
+  gap: 0.5rem;
 }
 .add-btn {
   grid-column: 1 / 3;
