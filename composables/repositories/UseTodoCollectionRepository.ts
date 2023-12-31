@@ -1,4 +1,6 @@
-import type { TodoAdd } from '~/types/schema'
+import type { Todo, TodoAdd } from '~/types/schema'
+
+export type CollectionTodo = Pick<Todo, 'id' | 'title' | 'memo' | 'deadline' | 'completed_at'>
 
 export const useTodoCollectionRepository = () => {
   const { todos } = useTodoRepository()
