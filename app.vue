@@ -25,9 +25,13 @@ dt,
 dd {
   margin: 0;
 }
+input,
+textarea,
+button {
+  accent-color: var(--accent-color);
+}
 input {
   padding: 2px 4px;
-  accent-color: var(--accent-color);
   &:focus-visible {
     outline-color: var(--accent-color);
   }
