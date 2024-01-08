@@ -15,9 +15,6 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
     cookieOptions: {
-      maxAge: 60 * 60 * 8,
-      sameSite: 'lax',
-      secure: true,
       domain: process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_DOMAIN : undefined
     }
   }
