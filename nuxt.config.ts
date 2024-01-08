@@ -12,7 +12,6 @@ export default defineNuxtConfig({
     }
   },
   supabase: {
-    redirect: false,
     cookieOptions: {
       domain: process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_DOMAIN : undefined
     }
