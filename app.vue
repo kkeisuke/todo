@@ -18,6 +18,7 @@ onMounted(() => {
 }
 body {
   margin: 0;
+  font-family: sans-serif;
 }
 dl,
 dt,
