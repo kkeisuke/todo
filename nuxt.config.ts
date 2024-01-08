@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      autoSubfolderIndex: false
+      autoSubfolderIndex: false,
+      routes: ['/404.html']
     }
   },
   supabase: {
