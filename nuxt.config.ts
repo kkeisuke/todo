@@ -9,5 +9,8 @@ export default defineNuxtConfig({
     prerender: {
       autoSubfolderIndex: false
     }
+  },
+  supabase: {
+    redirect: false
   }
 })

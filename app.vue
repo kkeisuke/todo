@@ -1,4 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const user = useSupabaseUser()
+
+onMounted(() => {
+  if (!user.value?.id) {
+    navigateTo('/login')
+  }
+})
+</script>
 
 <template>
   <NuxtPage />

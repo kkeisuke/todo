@@ -5,7 +5,7 @@ user.value?.id && provideUseTodoCollection(user.value.id)
 
 <template>
   <nuxt-layout>
-    <main class="main">
+    <main v-if="user?.id" class="main">
       <todo-header />
       <todo-add />
       <todo-list-menu />
