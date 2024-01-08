@@ -18,7 +18,7 @@ export default defineNuxtConfig({
       maxAge: 60 * 60 * 8,
       sameSite: 'lax',
       secure: true,
-      domain: process.env.NODE_ENV === 'production' ? process.env.SITE_URL : undefined
+      domain: process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_DOMAIN : undefined
     }
   }
 })
