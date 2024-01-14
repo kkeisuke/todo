@@ -7,8 +7,8 @@ export const useTodoCollectionRepository = () => {
 
   return {
     addTodo(todo: TodoAdd) {
-      todo.deadline = new Date(todo.deadline || Date.now()).toISOString()
-      return todos.insert(todo)
+      const deadline = new Date(todo.deadline || Date.now()).toISOString()
+      return todos.insert({ ...todo, deadline })
     },
     fetchTodos() {
       return todos.select('id, title, memo, deadline, completed_at').order('deadline', { ascending: false })
