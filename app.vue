@@ -24,6 +24,7 @@ button {
 }
 input {
   padding: 2px 4px;
+  font-size: 1rem;
   &:focus-visible {
     outline-color: var(--accent-color);
   }
