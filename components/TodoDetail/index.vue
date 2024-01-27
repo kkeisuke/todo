@@ -7,14 +7,24 @@ defineOptions({
 defineProps<{
   todo: Todo
 }>()
+const emit = defineEmits<{
+  deleted: []
+}>()
 
-const { completeTodo, cancelCompleteTodo } = injectUseTodoSingle()
+const { completeTodo, cancelCompleteTodo, deleteTodo } = injectUseTodoSingle()
 
 const handleCompleteTodo = async (id: Todo['id']) => {
   await completeTodo(id)
 }
 const handleCancelCompleteTodo = async (id: Todo['id']) => {
   await cancelCompleteTodo(id)
+}
+const handleDeleteTodo = async (id: Todo['id']) => {
+  if (window.confirm('削除しますか？') === false) {
+    return
+  }
+  await deleteTodo(id)
+  emit('deleted')
 }
 </script>
 
@@ -42,6 +52,7 @@ const handleCancelCompleteTodo = async (id: Todo['id']) => {
         <button type="button" @click="handleCancelCompleteTodo(todo.id)">取り消す</button>
       </template>
     </dd>
+    <dd class="delete"><button type="button" @click="handleDeleteTodo(todo.id)">削除する</button></dd>
   </dl>
 </template>
 
@@ -59,5 +70,9 @@ const handleCancelCompleteTodo = async (id: Todo['id']) => {
 }
 .memo {
   white-space: pre-wrap;
+}
+.delete {
+  grid-column: 2 / 3;
+  text-align: right;
 }
 </style>

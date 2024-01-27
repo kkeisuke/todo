@@ -1,7 +1,7 @@
 import type { Todo, TodoUpdate } from '~/types/schema'
 
 export const useTodoSingle = (todoId: string) => {
-  const { getTodoById, updateTodo, completeTodo } = useTodoSingleRepository()
+  const { getTodoById, updateTodo, completeTodo, deleteTodo } = useTodoSingleRepository()
 
   const { data, refresh, pending } = useAsyncData(`todo:${todoId}`, async () => {
     const { data } = await getTodoById(todoId)
@@ -22,6 +22,9 @@ export const useTodoSingle = (todoId: string) => {
     async cancelCompleteTodo(id: Todo['id']) {
       await updateTodo(id, { completed_at: null })
       await refresh()
+    },
+    async deleteTodo(id: Todo['id']) {
+      await deleteTodo(id)
     }
   }
 }

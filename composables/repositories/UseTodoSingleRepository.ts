@@ -15,6 +15,9 @@ export const useTodoSingleRepository = () => {
     },
     completeTodo(id: Todo['id']) {
       return todos.update({ completed_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq('id', id)
+    },
+    deleteTodo(id: Todo['id']) {
+      return todos.delete().eq('id', id)
     }
   }
 }
