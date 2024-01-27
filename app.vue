@@ -31,6 +31,7 @@ input {
 }
 textarea {
   padding: 2px 6px;
+  font-size: 1rem;
   &:focus-visible {
     outline-color: var(--accent-color);
   }
