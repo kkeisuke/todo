@@ -3,7 +3,7 @@ const route = useRoute()
 if (typeof route.params.id !== 'string') {
   throw new Error('invalid id')
 }
-const { todo } = provideUseTodoSingle(route.params.id)
+const { todo, pending } = provideUseTodoSingle(route.params.id)
 </script>
 
 <template>
@@ -11,6 +11,7 @@ const { todo } = provideUseTodoSingle(route.params.id)
     <main class="main">
       <todo-header />
       <todo-detail v-if="todo" :todo="todo" />
+      <div v-else-if="pending">loading...</div>
       <div v-else>not found</div>
     </main>
   </nuxt-layout>
