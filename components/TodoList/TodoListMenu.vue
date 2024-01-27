@@ -2,12 +2,10 @@
 defineOptions({
   name: 'TodoListMenu'
 })
-
-const router = useRouter()
 const { todos, params } = injectUseTodoCollection()
 
 const handleShowCompleted = () => {
-  router.push({ query: { completed: params.showCompleted ? '1' : undefined } })
+  navigateTo({ query: { completed: params.showCompleted ? '1' : undefined } })
 }
 </script>
 
