@@ -13,7 +13,8 @@ export default defineNuxtConfig({
   },
   supabase: {
     cookieOptions: {
-      domain: process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_DOMAIN : undefined
+      domain: process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_DOMAIN : undefined,
+      maxAge: 60 * 60 * 24 * 31
     }
   }
 })
