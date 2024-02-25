@@ -70,6 +70,7 @@ const handleDeleteTodo = async (id: Todo['id']) => {
 }
 .memo {
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .delete {
   grid-column: 2 / 3;
