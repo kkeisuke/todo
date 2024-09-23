@@ -32,7 +32,7 @@ const handleUpdateTodo = (id: CollectionTodo['id'], key: keyof TodoUpdate, { tar
     </div>
     <div class="property">
       <label :for="`edit-memo-${todo.id}`">メモ</label>
-      <textarea :id="`edit-memo-${todo.id}`" class="edit-memo" :value="todo.memo" rows="3" @change="handleUpdateTodo(todo.id, 'memo', $event)" />
+      <textarea :id="`edit-memo-${todo.id}`" class="edit-memo" :value="todo.memo" @change="handleUpdateTodo(todo.id, 'memo', $event)" />
     </div>
   </div>
 </template>
@@ -60,6 +60,8 @@ const handleUpdateTodo = (id: CollectionTodo['id'], key: keyof TodoUpdate, { tar
   gap: 0.5rem;
 }
 .edit-memo {
+  field-sizing: content;
+  min-height: 3lh;
   resize: vertical;
 }
 </style>

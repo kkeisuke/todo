@@ -22,7 +22,7 @@ const handleAddFormSubmit = () => {
           <ui-date-picker id="add-deadline" v-model="data.deadline" type="datetime-local" />
         </div>
         <label for="add-memo">メモ</label>
-        <textarea id="add-memo" v-model="data.memo" rows="5" />
+        <textarea id="add-memo" v-model="data.memo" />
         <button class="add-btn">追加</button>
       </div>
     </fieldset>
@@ -39,5 +39,10 @@ const handleAddFormSubmit = () => {
   grid-column: 1 / 3;
   justify-self: center;
   width: 8rem;
+}
+#add-memo {
+  field-sizing: content;
+  min-height: 5lh;
+  resize: vertical;
 }
 </style>
