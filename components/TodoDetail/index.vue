@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Todo } from '~/types/schema'
+import type { Todo, TodoUpdate } from '~/types/schema'
 
 defineOptions({
   name: 'TodoDetail'
@@ -11,8 +11,14 @@ const emit = defineEmits<{
   deleted: []
 }>()
 
-const { completeTodo, cancelCompleteTodo, deleteTodo } = injectUseTodoSingle()
+const { updateTodo, completeTodo, cancelCompleteTodo, deleteTodo } = injectUseTodoSingle()
 
+const handleUpdateTodo = (id: Todo['id'], key: keyof TodoUpdate, { target }: Event) => {
+  if (!(target instanceof HTMLInputElement) && !(target instanceof HTMLTextAreaElement)) {
+    throw new Error(`invalid target: ${target}`)
+  }
+  updateTodo(id, { [key]: target.value })
+}
 const handleCompleteTodo = async (id: Todo['id']) => {
   await completeTodo(id)
 }
@@ -31,11 +37,11 @@ const handleDeleteTodo = async (id: Todo['id']) => {
 <template>
   <dl class="detail">
     <dt>タイトル</dt>
-    <dd>{{ todo.title }}</dd>
+    <dd><input :value="todo.title" type="text" class="edit-title" @change="handleUpdateTodo(todo.id, 'title', $event)" /></dd>
     <dt>日時</dt>
-    <dd>{{ formatDateTime(todo.deadline) }}</dd>
+    <dd><ui-date-picker :model-value="formatDateTimeForInput(todo.deadline)" type="datetime-local" @change="handleUpdateTodo(todo.id, 'deadline', $event)" /></dd>
     <dt>メモ</dt>
-    <dd class="memo">{{ todo.memo }}</dd>
+    <dd><textarea :value="todo.memo" class="edit-memo" @change="handleUpdateTodo(todo.id, 'memo', $event)" /></dd>
     <dt>更新日</dt>
     <dd>{{ formatDateTime(todo.updated_at) }}</dd>
     <dt>作成日</dt>
@@ -68,9 +74,16 @@ const handleDeleteTodo = async (id: Todo['id']) => {
   align-items: center;
   gap: 1rem;
 }
-.memo {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+.edit-title {
+  width: 100%;
+  box-sizing: border-box;
+}
+.edit-memo {
+  width: 100%;
+  box-sizing: border-box;
+  field-sizing: content;
+  min-height: 10lh;
+  resize: vertical;
 }
 .delete {
   grid-column: 2 / 3;
