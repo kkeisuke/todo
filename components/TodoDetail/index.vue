@@ -13,9 +13,12 @@ const emit = defineEmits<{
 
 const { updateTodo, completeTodo, cancelCompleteTodo, deleteTodo } = injectUseTodoSingle()
 
-const handleUpdateTodo = (id: Todo['id'], key: keyof TodoUpdate, { target }: Event) => {
+const handleUpdateTodo = (id: Todo['id'], key: keyof TodoUpdate, currentValue: string | null, { target }: Event) => {
   if (!(target instanceof HTMLInputElement) && !(target instanceof HTMLTextAreaElement)) {
     throw new Error(`invalid target: ${target}`)
+  }
+  if (target.value === (currentValue ?? '')) {
+    return
   }
   updateTodo(id, { [key]: target.value })
 }
@@ -37,11 +40,11 @@ const handleDeleteTodo = async (id: Todo['id']) => {
 <template>
   <dl class="detail">
     <dt>タイトル</dt>
-    <dd><input :value="todo.title" type="text" class="edit-title" @change="handleUpdateTodo(todo.id, 'title', $event)" /></dd>
+    <dd><input :value="todo.title" type="text" class="edit-title" @blur="handleUpdateTodo(todo.id, 'title', todo.title, $event)" /></dd>
     <dt>日時</dt>
-    <dd><ui-date-picker :model-value="formatDateTimeForInput(todo.deadline)" type="datetime-local" @change="handleUpdateTodo(todo.id, 'deadline', $event)" /></dd>
+    <dd><ui-date-picker :model-value="formatDateTimeForInput(todo.deadline)" type="datetime-local" @blur="handleUpdateTodo(todo.id, 'deadline', formatDateTimeForInput(todo.deadline), $event)" /></dd>
     <dt>メモ</dt>
-    <dd><textarea :value="todo.memo" class="edit-memo" @change="handleUpdateTodo(todo.id, 'memo', $event)" /></dd>
+    <dd><textarea :value="todo.memo" class="edit-memo" @blur="handleUpdateTodo(todo.id, 'memo', todo.memo, $event)" /></dd>
     <dt>更新日</dt>
     <dd>{{ formatDateTime(todo.updated_at) }}</dd>
     <dt>作成日</dt>

@@ -11,6 +11,7 @@ defineEmits<{
   'update:modelValue': [value: string]
   // 使用する側で $event に型をつけるため
   change: [value: Event]
+  blur: [value: Event]
 }>()
 
 const datePicker = ref<HTMLInputElement>()
@@ -30,6 +31,7 @@ const handleClick = () => {
     @click="handleClick"
     @input="$emit('update:modelValue', datePicker?.value || '')"
     @change="$emit('change', $event)"
+    @blur="$emit('blur', $event)"
   />
 </template>
 

@@ -10,9 +10,12 @@ defineProps<{
 
 const { updateTodo } = injectUseTodoCollection()
 
-const handleUpdateTodo = (id: CollectionTodo['id'], key: keyof TodoUpdate, { target }: Event) => {
+const handleUpdateTodo = (id: CollectionTodo['id'], key: keyof TodoUpdate, currentValue: string | null, { target }: Event) => {
   if (!(target instanceof HTMLInputElement) && !(target instanceof HTMLTextAreaElement)) {
     throw new Error(`invalid target: ${target}`)
+  }
+  if (target.value === (currentValue ?? '')) {
+    return
   }
   updateTodo(id, { [key]: target.value })
 }
@@ -21,18 +24,23 @@ const handleUpdateTodo = (id: CollectionTodo['id'], key: keyof TodoUpdate, { tar
 <template>
   <div class="todo-list-item">
     <div class="header">
-      <input :value="todo.title" type="text" class="title" @change="handleUpdateTodo(todo.id, 'title', $event)" />
+      <input :value="todo.title" type="text" class="title" @blur="handleUpdateTodo(todo.id, 'title', todo.title, $event)" />
       <nuxt-link :to="`/${todo.id}`" class="to-detail">
         <button type="button">詳細</button>
       </nuxt-link>
     </div>
     <div class="property">
       <label :for="`edit-deadline-${todo.id}`">日時</label>
-      <ui-date-picker :id="`edit-deadline-${todo.id}`" :model-value="`${formatDateTimeForInput(todo.deadline)}`" type="datetime-local" @change="handleUpdateTodo(todo.id, 'deadline', $event)" />
+      <ui-date-picker
+        :id="`edit-deadline-${todo.id}`"
+        :model-value="`${formatDateTimeForInput(todo.deadline)}`"
+        type="datetime-local"
+        @blur="handleUpdateTodo(todo.id, 'deadline', formatDateTimeForInput(todo.deadline), $event)"
+      />
     </div>
     <div class="property">
       <label :for="`edit-memo-${todo.id}`">メモ</label>
-      <textarea :id="`edit-memo-${todo.id}`" class="edit-memo" :value="todo.memo" @change="handleUpdateTodo(todo.id, 'memo', $event)" />
+      <textarea :id="`edit-memo-${todo.id}`" class="edit-memo" :value="todo.memo" @blur="handleUpdateTodo(todo.id, 'memo', todo.memo, $event)" />
     </div>
   </div>
 </template>
