@@ -8,10 +8,11 @@ export const useTodoCollectionRepository = () => {
   return {
     addTodo(todo: TodoAdd) {
       const deadline = new Date(todo.deadline || Date.now()).toISOString()
-      return todos.insert({ ...todo, deadline })
+      return todos().insert({ ...todo, deadline })
     },
-    fetchTodos() {
-      return todos.select('id, title, memo, deadline, completed_at').order('deadline', { ascending: false })
+    fetchTodos(params: { showCompleted: boolean }) {
+      const query = todos().select('id, title, memo, deadline, completed_at').order('deadline', { ascending: false })
+      return params.showCompleted ? query : query.is('completed_at', null)
     }
   }
 }

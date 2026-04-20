@@ -10,12 +10,12 @@ export const useTodoCollection = (userId: string) => {
   })
 
   const { data, refresh } = useAsyncData(`todos:${userId}`, async () => {
-    const { data } = await fetchTodos()
+    const { data } = await fetchTodos(params)
     return data
   })
 
   return {
-    todos: computed(() => (data.value || []).filter((todo) => (params.showCompleted ? true : todo.completed_at === null))),
+    todos: computed(() => data.value || []),
     params,
     refreshTodos: refresh,
     updateTodo: async (id: Todo['id'], todo: TodoUpdate) => {

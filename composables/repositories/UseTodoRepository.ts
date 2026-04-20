@@ -4,6 +4,6 @@ export const useTodoRepository = () => {
   const client = useSupabaseClient<Database>()
 
   return {
-    todos: client.from('todos')
+    todos: () => client.from('todos')
   }
 }

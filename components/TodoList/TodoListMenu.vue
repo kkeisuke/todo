@@ -2,10 +2,11 @@
 defineOptions({
   name: 'TodoListMenu'
 })
-const { todos, params } = injectUseTodoCollection()
+const { todos, params, refreshTodos } = injectUseTodoCollection()
 
 const handleShowCompleted = () => {
   navigateTo({ query: { completed: params.showCompleted ? '1' : undefined } })
+  refreshTodos()
 }
 </script>
 
