@@ -71,6 +71,10 @@ const handleDeleteTodo = async (id: Todo['id']) => {
   grid-template-columns: auto 1fr;
   column-gap: 2rem;
   row-gap: 1rem;
+
+  dt {
+    white-space: nowrap;
+  }
 }
 .complete {
   display: flex;
