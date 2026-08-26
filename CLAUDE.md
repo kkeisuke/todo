@@ -8,16 +8,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev        # 開発サーバー起動 (port 3000)
 npm run build      # プロダクションビルド
 npm run preview    # ビルド後のプレビュー
-npm run lint       # ESLint + auto-fix (Vue, JS, TS)
+npm run lint       # ESLint（--fix 付きなので実行するとファイルが書き換わる）
 ```
 
 テストフレームワークは未導入。
 
 ## Tech Stack
 
-- **Nuxt 3** (v3.8.2) + **Vue 3** + **TypeScript**
-- **Supabase** (PostgreSQL) — DB・認証 (`@nuxtjs/supabase`)
-- Node.js 24.15.0
+Nuxt 3 + Vue 3 + TypeScript。DB と認証は Supabase (`@nuxtjs/supabase`)。
+バージョンは `package.json` と `.node-version` を参照する。
 
 ## Architecture
 
@@ -55,8 +54,7 @@ Store層は Vue 3 の `provide/inject` でコンポーネントツリーに状�
 
 ## Code Style
 
-- **Prettier**: シングルクォート、セミコロンなし、printWidth 200、trailingComma なし
-- **ESLint**: `eqeqeq`, `camelCase` 必須、`no-console` / `no-debugger` はエラー
-- Vue テンプレートでは **kebab-case** コンポーネント名
-- `<script setup>` + Composition API
-- 日付処理は JST (+9) オフセットを明示的に扱う (`utils/functions/index.ts`)
+- `<script setup>` + Composition API で書く。
+- 日付処理は JST (+9) オフセットを明示的に扱う (`utils/functions/index.ts`)。
+
+整形と静的解析のルールは `.prettierrc.yaml` と `.eslintrc.cjs` が持つ。
